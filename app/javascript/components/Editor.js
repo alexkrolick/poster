@@ -11,10 +11,13 @@ class Editor extends React.Component {
     this.editorRef = React.createRef()
 
     console.log('EDITOR OPTIONS', props.options)
-
+    const getView = () => this.view
     this.view = new EditorView(null, {
       // prosemirror options = { plugins, schema, comments: { comments: [] } }
-      state: EditorState.create(props.options),
+      state: EditorState.create({
+        ...props.options,
+        plugins: props.options.setupPlugins(getView),
+      }),
       dispatchTransaction: transaction => {
         const oldComments = commentPluginKey.getState(this.view.state)
 

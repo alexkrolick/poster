@@ -228,5 +228,5 @@ function renderComment(comment, dispatch, state) {
       state.tr.setMeta(commentPlugin, { type: 'deleteComment', comment })
     )
   )
-  return crel('li', { class: 'commentText' }, comment.text)
+  return crel('li', { class: 'commentText' }, comment.text /* ,deleteBtn */)
 }
